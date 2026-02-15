@@ -6,7 +6,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="screen-orientation" content="landscape">
     <title>PDF Slideshow</title>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -33,7 +32,6 @@
             inset: 0;
         }
 
-        /* Force landscape on mobile via CSS rotation */
         .app-container {
             width: 100%;
             height: 100%;
@@ -42,7 +40,6 @@
             overflow: hidden;
         }
 
-        /* Portrait mode: rotate the entire app */
         @media (orientation: portrait) {
             .app-container {
                 width: 100vh;
@@ -55,7 +52,6 @@
             }
         }
 
-        /* Loader */
         .loader {
             position: fixed;
             inset: 0;
@@ -84,47 +80,29 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        /* Slides Wrapper */
         .slides-wrapper {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 100%; height: 100%;
+            overflow: hidden; position: relative;
+            display: flex; justify-content: center; align-items: center;
             background: #000;
         }
 
         .page-stack {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: relative; width: 100%; height: 100%;
+            display: flex; justify-content: center; align-items: center;
         }
 
-        /* Stack Card */
         .stack-card {
             position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex; justify-content: center; align-items: center;
             transition: all 0.5s cubic-bezier(0.32, 0.72, 0, 1);
             will-change: transform, opacity;
             overflow: hidden;
-        }
-
-        /* Video Card */
-        .stack-card.video-card {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
         }
 
         .stack-card.video-card video {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: contain;
             background: #000;
             display: block;
@@ -132,70 +110,48 @@
 
         .scroll-hint {
             position: absolute;
-            bottom: 16px;
-            left: 50%;
+            bottom: 16px; left: 50%;
             transform: translateX(-50%);
             color: rgba(255,255,255,0.35);
-            font-size: 9px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            pointer-events: none;
-            z-index: 5;
+            font-size: 9px; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase;
+            display: flex; align-items: center; gap: 8px;
+            pointer-events: none; z-index: 5;
         }
-
         .scroll-hint svg {
             width: 14px; height: 14px;
             stroke: rgba(255,255,255,0.3);
             stroke-width: 2; fill: none;
             animation: hintPulse 2s ease-in-out infinite;
         }
-
         @keyframes hintPulse {
             0%, 100% { opacity: 0.3; transform: translateX(0); }
             50% { opacity: 1; transform: translateX(4px); }
         }
 
-        /* PDF Card */
         .stack-card.pdf-card {
-            width: 100%;
-            height: 100%;
             overflow: hidden;
         }
 
         .pdf-zoom-container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            touch-action: none;
+            width: 100%; height: 100%;
+            display: flex; justify-content: center; align-items: center;
+            overflow: hidden; touch-action: none;
         }
-
         .pdf-zoom-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex; justify-content: center; align-items: center;
             transform-origin: center center;
             will-change: transform;
         }
-
         .stack-card.pdf-card canvas {
-            max-width: calc(100% - 20px);
-            max-height: calc(100% - 20px);
-            width: auto;
-            height: auto;
+            display: block;
             background: #fff;
             box-shadow: 0 2px 30px rgba(0,0,0,0.5);
             border-radius: 4px;
         }
 
-        /* Horizontal stack positions */
-        .stack-card.prev-3, .stack-card.hidden-left {
+        /* Horizontal stack */
+        .stack-card.hidden-left {
             transform: translateX(-120%) scale(0.8);
             opacity: 0; pointer-events: none; z-index: 0;
         }
@@ -223,32 +179,24 @@
             opacity: 0.12; filter: brightness(0.35);
             z-index: 2; pointer-events: none;
         }
-        .stack-card.next-3, .stack-card.hidden-right {
+        .stack-card.hidden-right {
             transform: translateX(120%) scale(0.8);
             opacity: 0; pointer-events: none; z-index: 0;
         }
 
-        /* Page Counter */
         .page-counter {
             position: absolute;
-            bottom: 10px;
-            left: 50%;
+            bottom: 10px; left: 50%;
             transform: translateX(-50%);
             background: rgba(0,0,0,0.6);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            padding: 6px 16px;
-            border-radius: 980px;
-            color: #fff;
-            font-size: 12px;
-            font-weight: 500;
+            padding: 6px 16px; border-radius: 980px;
+            color: #fff; font-size: 12px; font-weight: 500;
             z-index: 100;
             border: 1px solid rgba(255,255,255,0.08);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 2px;
+            opacity: 0; transition: opacity 0.3s ease;
+            display: flex; align-items: center; gap: 2px;
             font-variant-numeric: tabular-nums;
             pointer-events: none;
         }
@@ -257,36 +205,29 @@
         .page-counter .sep { color: rgba(255,255,255,0.3); margin: 0 2px; }
         .page-counter .total-num { color: rgba(255,255,255,0.5); }
 
-        /* Progress Bar */
         .progress-bar {
-            position: absolute;
-            top: 0; left: 0;
+            position: absolute; top: 0; left: 0;
             height: 2px;
             background: rgba(255,255,255,0.5);
             z-index: 100;
             transition: width 0.5s cubic-bezier(0.32, 0.72, 0, 1);
-            opacity: 0;
-            pointer-events: none;
+            opacity: 0; pointer-events: none;
         }
         .progress-bar.visible { opacity: 1; }
 
-        /* Zoom Controls */
         .zoom-controls {
             display: none;
             position: absolute;
-            bottom: 10px;
-            right: 16px;
+            bottom: 10px; right: 16px;
             background: rgba(0,0,0,0.7);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-radius: 10px;
-            padding: 4px;
-            gap: 2px;
+            padding: 4px; gap: 2px;
             z-index: 100;
             border: 1px solid rgba(255,255,255,0.08);
         }
         .zoom-controls.visible { display: flex; }
-
         .zoom-btn {
             width: 32px; height: 32px;
             background: rgba(255,255,255,0.08);
@@ -294,41 +235,28 @@
             color: #fff; font-size: 16px;
             cursor: pointer; display: flex;
             align-items: center; justify-content: center;
-            font-weight: 300;
-            touch-action: manipulation;
+            font-weight: 300; touch-action: manipulation;
         }
         .zoom-btn:active { background: rgba(255,255,255,0.2); transform: scale(0.9); }
-
         .zoom-level {
             min-width: 40px; text-align: center;
             color: rgba(255,255,255,0.6);
             font-size: 10px; font-weight: 600;
             display: flex; align-items: center; justify-content: center;
         }
-        .zoom-reset {
-            font-size: 10px; padding: 0 8px;
-            font-weight: 600;
-        }
+        .zoom-reset { font-size: 10px; padding: 0 8px; font-weight: 600; }
 
-        /* Upload Container */
         .upload-container {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 200;
-            padding: 20px;
+            position: absolute; inset: 0;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 200; padding: 20px;
             background: #000;
             transition: opacity 0.4s ease, visibility 0.4s ease;
         }
         .upload-container.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-
         .upload-content {
-            max-width: 340px;
-            width: 100%;
-            text-align: center;
-            color: #fff;
+            max-width: 340px; width: 100%;
+            text-align: center; color: #fff;
         }
         .upload-content h2 {
             font-size: 22px; font-weight: 700;
@@ -341,10 +269,8 @@
         .upload-area {
             background: rgba(255,255,255,0.04);
             border: 1.5px dashed rgba(255,255,255,0.15);
-            border-radius: 16px;
-            padding: 36px 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            border-radius: 16px; padding: 36px 20px;
+            cursor: pointer; transition: all 0.3s ease;
         }
         .upload-area:hover, .upload-area.drag-over {
             background: rgba(255,255,255,0.08);
@@ -352,20 +278,15 @@
             border-style: solid;
         }
         .upload-icon { font-size: 40px; margin-bottom: 12px; }
-        .upload-area p {
-            color: rgba(255,255,255,0.4);
-            font-size: 13px; margin-bottom: 16px;
-        }
+        .upload-area p { color: rgba(255,255,255,0.4); font-size: 13px; margin-bottom: 16px; }
         .upload-btn {
             display: inline-block; padding: 10px 28px;
             background: #0a84ff; color: #fff; border: none;
             border-radius: 980px; font-size: 14px; font-weight: 600;
-            cursor: pointer; transition: all 0.2s ease;
-            touch-action: manipulation;
+            cursor: pointer; touch-action: manipulation;
         }
         .upload-btn:active { transform: scale(0.95); }
         input[type="file"] { display: none; }
-
         .status {
             margin-top: 16px; padding: 10px 16px;
             border-radius: 12px; font-size: 13px; display: none;
@@ -373,94 +294,27 @@
         .status.loading { background: rgba(255,255,255,0.05); color: #fff; display: block; }
         .status.error { background: rgba(255,59,48,0.15); color: #ff453a; display: block; }
 
-        /* Touch Area */
         .touch-area {
-            position: absolute;
-            inset: 0;
-            z-index: 50;
-            touch-action: none;
+            position: absolute; inset: 0;
+            z-index: 50; touch-action: none;
         }
         .touch-area.zoom-active { pointer-events: none; }
 
-        /* Rotate prompt for very small portrait screens */
-        .rotate-prompt {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: #000;
-            z-index: 99999;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 16px;
-            color: #fff;
-        }
-
-        .rotate-prompt .rotate-icon {
-            width: 60px; height: 60px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            animation: rotatePhone 2s ease-in-out infinite;
-        }
-
-        .rotate-prompt .rotate-icon svg {
-            width: 32px; height: 32px;
-            stroke: rgba(255,255,255,0.6);
-            stroke-width: 1.5; fill: none;
-        }
-
-        @keyframes rotatePhone {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-90deg); }
-            50% { transform: rotate(-90deg); }
-            75% { transform: rotate(0deg); }
-        }
-
-        .rotate-prompt p {
-            color: rgba(255,255,255,0.5);
-            font-size: 13px;
-            text-align: center;
-            max-width: 200px;
-            line-height: 1.4;
-        }
-
-        .rotate-prompt .dismiss-btn {
-            margin-top: 8px;
-            padding: 8px 24px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 980px;
-            color: #fff;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            touch-action: manipulation;
-        }
-        .rotate-prompt .dismiss-btn:active { background: rgba(255,255,255,0.2); }
-
-        /* Zoom hint */
         .zoom-hint {
-            display: none;
-            position: absolute;
-            bottom: 50px;
-            left: 50%;
+            display: none; position: absolute;
+            bottom: 50px; left: 50%;
             transform: translateX(-50%);
             background: rgba(0,0,0,0.8);
             backdrop-filter: blur(16px);
-            padding: 8px 16px;
-            border-radius: 980px;
+            padding: 8px 16px; border-radius: 980px;
             color: rgba(255,255,255,0.6);
-            font-size: 11px;
-            font-weight: 500;
+            font-size: 11px; font-weight: 500;
             z-index: 60;
             border: 1px solid rgba(255,255,255,0.08);
             animation: toastAnim 3s ease-in-out forwards;
-            white-space: nowrap;
-            pointer-events: none;
+            white-space: nowrap; pointer-events: none;
         }
         .zoom-hint.visible { display: block; }
-
         @keyframes toastAnim {
             0% { opacity: 0; transform: translateX(-50%) translateY(8px); }
             10% { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -468,40 +322,48 @@
             100% { opacity: 0; transform: translateX(-50%) translateY(-6px); }
         }
 
-        /* Nav dots - left side vertical */
         .nav-dots {
-            position: absolute;
-            left: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            z-index: 100;
-            opacity: 0;
+            position: absolute; left: 8px;
+            top: 50%; transform: translateY(-50%);
+            display: flex; flex-direction: column; gap: 5px;
+            z-index: 100; opacity: 0;
             transition: opacity 0.3s ease;
             padding: 6px 3px;
         }
         .nav-dots.visible { opacity: 1; }
-
         .nav-dot {
-            width: 5px; height: 5px;
-            border-radius: 50%;
+            width: 5px; height: 5px; border-radius: 50%;
             background: rgba(255,255,255,0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
+            cursor: pointer; transition: all 0.3s ease;
             touch-action: manipulation;
         }
         .nav-dot:active { transform: scale(1.5); }
         .nav-dot.active {
-            background: #fff;
-            transform: scale(1.3);
+            background: #fff; transform: scale(1.3);
             box-shadow: 0 0 6px rgba(255,255,255,0.4);
         }
         .nav-dot.video-dot { background: rgba(255,55,95,0.3); }
         .nav-dot.video-dot.active {
             background: #ff375f;
             box-shadow: 0 0 6px rgba(255,55,95,0.5);
+        }
+
+        /* Loading indicator for pages */
+        .page-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,0.8);
+            z-index: 2;
+        }
+        .page-loading .mini-spinner {
+            width: 24px; height: 24px;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-top-color: rgba(255,255,255,0.6);
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
         }
     </style>
 </head>
@@ -511,44 +373,22 @@
         <div class="loader-text">Loading</div>
     </div>
 
-    <!-- Rotate Prompt (optional, dismissed) -->
-    <div class="rotate-prompt" id="rotatePrompt">
-        <div class="rotate-icon">
-            <svg viewBox="0 0 24 24">
-                <rect x="4" y="2" width="16" height="20" rx="2"/>
-                <line x1="12" y1="18" x2="12" y2="18.01" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-        </div>
-        <p>For the best experience, rotate your phone to landscape</p>
-        <button class="dismiss-btn" id="dismissRotate">Continue anyway</button>
-    </div>
-
     <div class="app-container" id="appContainer">
-        <!-- Progress Bar -->
         <div class="progress-bar" id="progressBar"></div>
-
-        <!-- Nav Dots -->
         <div class="nav-dots" id="navDots"></div>
-
-        <!-- Page Counter -->
         <div class="page-counter" id="pageCounter">
             <span class="current-num">1</span>
             <span class="sep">/</span>
             <span class="total-num">1</span>
         </div>
-
-        <!-- Zoom Controls -->
         <div class="zoom-controls" id="zoomControls">
             <button class="zoom-btn" id="zoomOut">−</button>
             <span class="zoom-level" id="zoomLevel">100%</span>
             <button class="zoom-btn" id="zoomIn">+</button>
             <button class="zoom-btn zoom-reset" id="zoomReset">Reset</button>
         </div>
-
-        <!-- Zoom Hint -->
         <div class="zoom-hint" id="zoomHint">Pinch to zoom · Double-tap to reset</div>
 
-        <!-- Upload -->
         <div class="upload-container" id="uploadContainer">
             <div class="upload-content">
                 <h2>PDF Slideshow</h2>
@@ -563,10 +403,8 @@
             </div>
         </div>
 
-        <!-- Slides -->
         <div class="slides-wrapper" id="slidesWrapper">
             <div class="page-stack" id="pageStack">
-                <!-- Video Card -->
                 <div class="stack-card video-card current" data-index="0" id="videoCard">
                     <video id="mainVideo" autoplay muted loop playsinline preload="auto">
                         <source src="video1.mp4" type="video/mp4">
@@ -579,7 +417,6 @@
             </div>
         </div>
 
-        <!-- Touch Area -->
         <div class="touch-area" id="touchArea"></div>
     </div>
 
@@ -592,6 +429,8 @@
             isAnimating: false,
             pdfDoc: null,
             renderedPages: new Map(),
+            renderingPages: new Set(),
+            isPortrait: window.innerHeight > window.innerWidth,
             zoom: {
                 scale: 1, minScale: 1, maxScale: 5,
                 translateX: 0, translateY: 0,
@@ -620,15 +459,11 @@
             zoomIn: document.getElementById('zoomIn'),
             zoomOut: document.getElementById('zoomOut'),
             zoomReset: document.getElementById('zoomReset'),
-            zoomHint: document.getElementById('zoomHint'),
-            rotatePrompt: document.getElementById('rotatePrompt'),
-            dismissRotate: document.getElementById('dismissRotate')
+            zoomHint: document.getElementById('zoomHint')
         };
 
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-                         ('ontouchstart' in window);
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ('ontouchstart' in window);
 
-        // Try to lock orientation to landscape
         function tryLockLandscape() {
             if (screen.orientation && screen.orientation.lock) {
                 screen.orientation.lock('landscape').catch(() => {});
@@ -636,25 +471,36 @@
         }
         tryLockLandscape();
 
-        // Dismiss rotate prompt
-        el.dismissRotate.addEventListener('click', () => {
-            el.rotatePrompt.style.display = 'none';
-        });
+        // Update portrait state
+        function updateOrientation() {
+            state.isPortrait = window.innerHeight > window.innerWidth;
+        }
 
-        // Helpers
         function getDistance(t1, t2) {
             return Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
         }
         function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
 
-        // Get effective dimensions (considering rotation)
+        // Get the effective display dimensions (after CSS rotation)
         function getEffectiveDimensions() {
-            const isPortrait = window.innerHeight > window.innerWidth;
-            if (isPortrait) {
-                // Rotated: width becomes height and vice versa
+            if (state.isPortrait) {
                 return { width: window.innerHeight, height: window.innerWidth };
             }
             return { width: window.innerWidth, height: window.innerHeight };
+        }
+
+        // Convert touch coordinates when in portrait (CSS rotated)
+        function getSwipeCoords(touch) {
+            if (state.isPortrait) {
+                // When rotated 90deg clockwise via CSS:
+                // Screen X becomes effective Y (inverted)
+                // Screen Y becomes effective X
+                return {
+                    x: touch.clientY,
+                    y: window.innerWidth - touch.clientX
+                };
+            }
+            return { x: touch.clientX, y: touch.clientY };
         }
 
         // Nav Dots
@@ -664,12 +510,13 @@
                 const dot = document.createElement('div');
                 dot.className = `nav-dot ${i === 0 ? 'video-dot' : ''} ${i === state.currentIndex ? 'active' : ''}`;
                 dot.addEventListener('click', (e) => { e.stopPropagation(); goToCard(i); });
-                dot.addEventListener('touchend', (e) => { e.preventDefault(); e.stopPropagation(); goToCard(i); }, { passive: false });
+                dot.addEventListener('touchend', (e) => {
+                    e.preventDefault(); e.stopPropagation(); goToCard(i);
+                }, { passive: false });
                 el.navDots.appendChild(dot);
             }
         }
 
-        // Update UI
         function updateUI() {
             const dots = el.navDots.querySelectorAll('.nav-dot');
             dots.forEach((d, i) => d.classList.toggle('active', i === state.currentIndex));
@@ -698,7 +545,7 @@
 
         function updateCardStack() {
             const cards = el.pageStack.querySelectorAll('.stack-card');
-            const cls = ['prev-3','prev-2','prev-1','current','next-1','next-2','next-3','hidden-left','hidden-right'];
+            const cls = ['prev-2','prev-1','current','next-1','next-2','hidden-left','hidden-right'];
 
             cards.forEach(card => {
                 const idx = parseInt(card.dataset.index);
@@ -708,7 +555,7 @@
                 if (diff === 0) card.classList.add('current');
                 else if (diff === -1) card.classList.add('prev-1');
                 else if (diff === -2) card.classList.add('prev-2');
-                else if (diff <= -3) card.classList.add('hidden-left');
+                else if (diff < -2) card.classList.add('hidden-left');
                 else if (diff === 1) card.classList.add('next-1');
                 else if (diff === 2) card.classList.add('next-2');
                 else card.classList.add('hidden-right');
@@ -755,7 +602,6 @@
             el.touchArea.classList.toggle('zoom-active', state.zoom.isZoomed);
         }
 
-        // Navigate
         function goToCard(index) {
             if (state.isAnimating) return;
             if (index < 0 || index >= state.totalCards || index === state.currentIndex) return;
@@ -763,26 +609,64 @@
             state.isAnimating = true;
             state.currentIndex = index;
             updateUI();
+
+            // Render nearby pages
             if (state.pdfDoc) {
-                [index - 1, index, index + 1, index + 2].forEach(p => renderPage(p));
+                for (let p = Math.max(1, index - 1); p <= Math.min(state.pdfDoc.numPages, index + 2); p++) {
+                    renderPage(p);
+                }
             }
             setTimeout(() => { state.isAnimating = false; }, 500);
         }
 
-        // Render PDF
+        // ─── RENDER PDF PAGE (fixed rotation & blank pages) ───
         async function renderPage(pageNum) {
             if (!state.pdfDoc || pageNum < 1 || pageNum > state.pdfDoc.numPages) return;
+
             const dim = getEffectiveDimensions();
             const maxW = dim.width - 20;
             const maxH = dim.height - 20;
             const cacheKey = `${pageNum}-${maxW}-${maxH}-${window.devicePixelRatio}`;
+
+            // Already rendered with same dimensions
             if (state.renderedPages.get(pageNum) === cacheKey) return;
+
+            // Already rendering
+            if (state.renderingPages.has(pageNum)) return;
+            state.renderingPages.add(pageNum);
 
             try {
                 const page = await state.pdfDoc.getPage(pageNum);
                 const card = el.pageStack.querySelector(`.stack-card[data-index="${pageNum}"]`);
-                if (!card) return;
+                if (!card) { state.renderingPages.delete(pageNum); return; }
 
+                // Get the viewport with rotation = 0 (use page's own rotation)
+                const defaultViewport = page.getViewport({ scale: 1, rotation: 0 });
+
+                // Use the page's built-in rotation
+                const pageRotation = page.rotate || 0;
+                const viewport0 = page.getViewport({ scale: 1, rotation: pageRotation });
+
+                // Determine actual page dimensions after rotation
+                const pageWidth = viewport0.width;
+                const pageHeight = viewport0.height;
+
+                // Calculate scale to fit
+                const scaleX = maxW / pageWidth;
+                const scaleY = maxH / pageHeight;
+                const fitScale = Math.min(scaleX, scaleY);
+
+                // Device pixel ratio for crisp rendering
+                const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+                const renderScale = fitScale * dpr;
+
+                // Create the final viewport with proper rotation and scale
+                const renderViewport = page.getViewport({
+                    scale: renderScale,
+                    rotation: pageRotation
+                });
+
+                // Setup DOM
                 let zc = card.querySelector('.pdf-zoom-container');
                 if (!zc) {
                     zc = document.createElement('div');
@@ -793,27 +677,54 @@
                     card.appendChild(zc);
                 }
                 const zw = card.querySelector('.pdf-zoom-wrapper');
+
+                // Remove loading indicator if exists
+                const existingLoader = card.querySelector('.page-loading');
+
+                // Create fresh canvas each time to avoid stale state
                 let canvas = zw.querySelector('canvas');
-                if (!canvas) { canvas = document.createElement('canvas'); zw.appendChild(canvas); }
+                if (canvas) {
+                    zw.removeChild(canvas);
+                }
+                canvas = document.createElement('canvas');
+
+                canvas.width = Math.floor(renderViewport.width);
+                canvas.height = Math.floor(renderViewport.height);
+                canvas.style.width = `${Math.floor(renderViewport.width / dpr)}px`;
+                canvas.style.height = `${Math.floor(renderViewport.height / dpr)}px`;
 
                 const ctx = canvas.getContext('2d');
-                const vp = page.getViewport({ scale: 1 });
-                const scale = Math.min(maxW / vp.width, maxH / vp.height);
-                const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
-                const svp = page.getViewport({ scale: scale * dpr });
 
-                canvas.width = svp.width;
-                canvas.height = svp.height;
-                canvas.style.width = `${svp.width / dpr}px`;
-                canvas.style.height = `${svp.height / dpr}px`;
+                // Clear canvas completely
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                await page.render({ canvasContext: ctx, viewport: svp }).promise;
+                // Fill white background first
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Render the page
+                const renderTask = page.render({
+                    canvasContext: ctx,
+                    viewport: renderViewport,
+                    intent: 'display'
+                });
+
+                await renderTask.promise;
+
+                // Add canvas to DOM only after render is complete
+                zw.appendChild(canvas);
+
+                // Remove loading indicator
+                if (existingLoader) existingLoader.remove();
+
                 state.renderedPages.set(pageNum, cacheKey);
 
                 if (isMobile) setupPinchZoom(zc, zw);
+
             } catch (err) {
-                console.error('Render error', pageNum, err);
+                console.error('Render error page', pageNum, err);
+            } finally {
+                state.renderingPages.delete(pageNum);
             }
         }
 
@@ -841,8 +752,10 @@
                     lastTap = now;
                     if (state.zoom.isZoomed) {
                         isPanning = true;
-                        panSX = e.touches[0].clientX; panSY = e.touches[0].clientY;
-                        panTX = state.zoom.translateX; panTY = state.zoom.translateY;
+                        panSX = e.touches[0].clientX;
+                        panSY = e.touches[0].clientY;
+                        panTX = state.zoom.translateX;
+                        panTY = state.zoom.translateY;
                         wrapper.style.transition = 'none';
                     }
                 }
@@ -891,18 +804,19 @@
         });
         el.zoomReset.addEventListener('click', (e) => { e.stopPropagation(); resetZoom(); });
 
-        // ─── TOUCH NAVIGATION (horizontal swipe) ───
-        let touchSX = 0, touchSY = 0, touchST = 0, touchMoved = false;
-        let currentDeltaX = 0;
+        // ─── TOUCH NAVIGATION (fixed for portrait rotation) ───
+        let touchStart = { x: 0, y: 0 };
+        let touchStartTime = 0;
+        let touchMoved = false;
 
         el.touchArea.addEventListener('touchstart', (e) => {
             if (state.zoom.isZoomed || state.zoom.isPinching) return;
             if (e.touches.length !== 1) return;
-            touchSX = e.touches[0].clientX;
-            touchSY = e.touches[0].clientY;
-            touchST = Date.now();
+
+            const coords = getSwipeCoords(e.touches[0]);
+            touchStart = coords;
+            touchStartTime = Date.now();
             touchMoved = false;
-            currentDeltaX = 0;
         }, { passive: true });
 
         el.touchArea.addEventListener('touchmove', (e) => {
@@ -910,27 +824,23 @@
             if (e.touches.length !== 1) return;
             touchMoved = true;
 
-            // Calculate delta for visual feedback
-            const dx = e.touches[0].clientX - touchSX;
-            const dy = e.touches[0].clientY - touchSY;
+            const coords = getSwipeCoords(e.touches[0]);
+            const dx = coords.x - touchStart.x;
 
-            // Only do horizontal
-            if (Math.abs(dx) > Math.abs(dy)) {
-                currentDeltaX = dx;
-                // Apply subtle drag effect on current card
-                const currentCard = el.pageStack.querySelector('.stack-card.current');
-                if (currentCard) {
-                    const dragPercent = clamp(dx / window.innerWidth * 100, -15, 15);
-                    currentCard.style.transition = 'none';
-                    currentCard.style.transform = `translateX(${dragPercent}%) scale(${1 - Math.abs(dragPercent) * 0.002})`;
-                }
+            // Visual drag feedback on current card
+            const currentCard = el.pageStack.querySelector('.stack-card.current');
+            if (currentCard && Math.abs(dx) > 10) {
+                const dim = getEffectiveDimensions();
+                const dragPercent = clamp(dx / dim.width * 100, -15, 15);
+                currentCard.style.transition = 'none';
+                currentCard.style.transform = `translateX(${dragPercent}%) scale(${1 - Math.abs(dragPercent) * 0.002})`;
             }
         }, { passive: true });
 
         el.touchArea.addEventListener('touchend', (e) => {
             if (state.zoom.isZoomed || state.zoom.isPinching) return;
 
-            // Reset drag effect
+            // Reset drag
             const currentCard = el.pageStack.querySelector('.stack-card.current');
             if (currentCard) {
                 currentCard.style.transition = '';
@@ -939,23 +849,24 @@
 
             if (!touchMoved) return;
 
-            const endX = e.changedTouches[0].clientX;
-            const endY = e.changedTouches[0].clientY;
-            const diffX = touchSX - endX;
-            const diffY = touchSY - endY;
-            const elapsed = Date.now() - touchST;
+            const coords = getSwipeCoords(e.changedTouches[0]);
+            const diffX = touchStart.x - coords.x;
+            const diffY = touchStart.y - coords.y;
+            const elapsed = Date.now() - touchStartTime;
 
-            // Horizontal swipe detection
-            if (Math.abs(diffX) > Math.abs(diffY) * 0.8) {
-                const threshold = elapsed < 250 ? 25 : 50;
+            // Horizontal swipe
+            if (Math.abs(diffX) > Math.abs(diffY) * 0.7) {
+                const threshold = elapsed < 250 ? 20 : 45;
                 if (Math.abs(diffX) > threshold) {
-                    if (diffX > 0) goToCard(state.currentIndex + 1); // swipe left = next
-                    else goToCard(state.currentIndex - 1); // swipe right = prev
+                    // diffX > 0 means swiped left in effective coords = NEXT
+                    // diffX < 0 means swiped right in effective coords = PREV
+                    if (diffX > 0) goToCard(state.currentIndex + 1);
+                    else goToCard(state.currentIndex - 1);
                 }
             }
         }, { passive: true });
 
-        // Mouse wheel (horizontal or vertical)
+        // Mouse wheel
         let wheelTimer, wheelAcc = 0;
         document.addEventListener('wheel', (e) => {
             if (state.zoom.isZoomed) return;
@@ -1011,12 +922,29 @@
             try {
                 state.pdfDoc = await pdfjsLib.getDocument(source).promise;
                 const n = state.pdfDoc.numPages;
+
+                console.log(`PDF loaded: ${n} pages`);
+
+                // Log each page's rotation for debugging
+                for (let i = 1; i <= n; i++) {
+                    const pg = await state.pdfDoc.getPage(i);
+                    console.log(`Page ${i}: rotate=${pg.rotate}, width=${pg.getViewport({scale:1}).width.toFixed(0)}, height=${pg.getViewport({scale:1}).height.toFixed(0)}`);
+                }
+
                 el.uploadContainer.classList.add('hidden');
 
+                // Create cards with loading indicators
                 for (let i = 1; i <= n; i++) {
                     const card = document.createElement('div');
                     card.className = 'stack-card pdf-card hidden-right';
                     card.dataset.index = i;
+
+                    // Add loading indicator
+                    const loader = document.createElement('div');
+                    loader.className = 'page-loading';
+                    loader.innerHTML = '<div class="mini-spinner"></div>';
+                    card.appendChild(loader);
+
                     el.pageStack.appendChild(card);
                 }
 
@@ -1027,8 +955,11 @@
                 createNavDots();
                 updateUI();
 
+                // Render first few pages sequentially to avoid race conditions
                 await renderPage(1);
-                renderPage(2); renderPage(3);
+                await renderPage(2);
+                await renderPage(3);
+
                 hideStatus();
 
                 if (isMobile) {
@@ -1046,15 +977,22 @@
         // Resize
         let resizeTimer;
         function handleResize() {
+            updateOrientation();
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => {
                 if (state.pdfDoc) {
+                    // Clear all cached renders so pages re-render at correct size
                     state.renderedPages.clear();
+                    state.renderingPages.clear();
                     resetZoom();
-                    [state.currentIndex - 1, state.currentIndex, state.currentIndex + 1, state.currentIndex + 2]
-                        .forEach(p => renderPage(p));
+
+                    // Re-render visible pages
+                    const ci = state.currentIndex;
+                    for (let p = Math.max(1, ci - 1); p <= Math.min(state.pdfDoc.numPages, ci + 2); p++) {
+                        renderPage(p);
+                    }
                 }
-            }, 200);
+            }, 250);
         }
         window.addEventListener('resize', handleResize);
         window.addEventListener('orientationchange', () => {
@@ -1067,19 +1005,11 @@
         document.addEventListener('gesturechange', e => e.preventDefault(), { passive: false });
         document.addEventListener('gestureend', e => e.preventDefault(), { passive: false });
 
-        // Prevent pull-to-refresh & overscroll
-        document.addEventListener('touchmove', (e) => {
-            if (e.touches.length === 1 && !state.zoom.isZoomed) {
-                // Allow only if inside pdf-zoom-container and zoomed
-            }
-        }, { passive: true });
-
         // Init
         window.addEventListener('load', () => {
+            updateOrientation();
             setTimeout(() => el.loader.classList.add('hidden'), 300);
-
             el.video.addEventListener('error', () => console.log('Video not found'));
-
             loadPDF('pdf1.pdf').catch(() => console.log('Auto-load failed'));
         });
     </script>
